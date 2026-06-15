@@ -1,0 +1,7 @@
+0.000000 irq_entry bmi270-imu sample_ready
+0.000180 threaded_irq bmi270-imu fifo_watermark
+0.000920 driver_read bmi270-imu 16_samples
+0.001120 iio_push bmi270-imu timestamp_ns=120000000
+0.003800 userspace_receive sensor-service batch=16
+0.004700 fusion_update pose_service frame=381
+0.006200 product_action gesture_pipeline motion_update

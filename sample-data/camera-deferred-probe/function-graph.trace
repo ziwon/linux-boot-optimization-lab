@@ -1,0 +1,8 @@
+# tracer: function_graph
+# CPU  DURATION                  FUNCTION CALLS
+ 0)               |  camera_sensor_probe() {
+ 0) + 300.000 ms   |    regulator_get_optional();
+ 0) ! 450.000 ms   |    wait_for_supplier();
+ 0)  42.500 ms     |    csi_phy_power_on();
+ 0)               |  }
+ 0)  18.000 ms     |  media_device_register();

@@ -1,0 +1,9 @@
+# tracer: function_graph
+# CPU  DURATION                  FUNCTION CALLS
+ 0)   5.120 us    |  clk_prepare_enable();
+ 0) 300.240 ms    |  regulator_wait_ready();
+ 0)               |  camera_probe() {
+ 0) 100.000 ms    |    msleep();
+ 0) + 42.500 ms    |    csi_phy_power_on();
+ 0)               |  }
+ 0) ! 560.000 ms    |  mmc_rescan();

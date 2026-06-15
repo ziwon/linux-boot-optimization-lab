@@ -1,0 +1,9 @@
+build/
+external/
+*.log
+!sample-data/**/*.log
+*.csv
+!sample-data/**/*.csv
+*.o
+*.dtb
+*.dts

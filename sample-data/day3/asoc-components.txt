@@ -1,0 +1,9 @@
+card: smart-glasses-audio
+machine_driver: qcom-smartglasses
+cpu_dai: lpass-i2s.0
+codec_dai: wsa-mic-codec-aif1
+pcm_capture: hw:0,0
+dapm_route: DMIC -> Decimator -> AAD DSP -> CPU DAI
+clock: audio_mclk 19200000 enabled
+regulator: vdd-mic 1800mV enabled
+wake_irq: audio-aad enabled

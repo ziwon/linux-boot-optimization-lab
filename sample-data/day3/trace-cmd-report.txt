@@ -1,0 +1,7 @@
+     sensor-irq-42 [000]  10.000000: irq_handler_entry: irq=42 name=bmi270-imu
+     sensor-irq-42 [000]  10.000120: irq_handler_exit: irq=42 ret=handled
+     kworker/u8:2  [001]  10.000250: workqueue_queue_work: work struct=bmi270_fifo_work function=bmi270_fifo_read
+     kworker/u8:2  [001]  10.001400: workqueue_execute_start: work struct=bmi270_fifo_work function=bmi270_fifo_read
+     kworker/u8:2  [001]  10.002300: workqueue_execute_end: work struct=bmi270_fifo_work
+     sensor-service [002] 10.004100: sched_wakeup: comm=sensor-service pid=812
+     sensor-service [002] 10.004900: sched_switch: prev_comm=idle next_comm=sensor-service

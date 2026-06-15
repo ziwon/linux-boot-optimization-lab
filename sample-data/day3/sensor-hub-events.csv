@@ -1,0 +1,6 @@
+event_id,event_name,transport,linux_interface,wake,timestamp_owner,consumer
+0x01,imu_batch_ready,mailbox,iio,true,sensor_hub,sensor-service
+0x02,near_far,mailbox,input,true,sensor_hub,proximityd
+0x03,audio_wake,rpmsg,input,true,dsp,audio-service
+0x04,temperature_sample,mailbox,iio,false,sensor_hub,thermal-service
+0x05,hub_crash,mailbox,devlink_health,true,linux_kernel,platform-monitor

@@ -1,0 +1,8 @@
+0.000000 irq_entry tof-proximity near
+0.000450 input_event ABS_DISTANCE 42
+0.001200 userspace_receive proximityd near
+0.002100 product_action display_dim_cancel
+2.400000 irq_entry tof-proximity wave_left
+2.401100 input_event KEY_WAKEUP 1
+2.403600 userspace_receive gesture_service wave_left
+2.406000 product_action ui_next_card

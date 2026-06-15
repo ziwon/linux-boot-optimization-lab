@@ -1,0 +1,4 @@
+ regulator                      use open bypass voltage current min     max
+--------------------------------------------------------------------------------
+ cam-vdd                          2    2      0 2800mV     0mA 2800mV 2800mV
+ vddio-cam                        1    1      0 1800mV     0mA 1800mV 1800mV

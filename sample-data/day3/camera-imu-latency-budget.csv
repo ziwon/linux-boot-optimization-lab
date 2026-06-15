@@ -1,0 +1,6 @@
+segment,start,stop,measured_ms,budget_ms
+imu_to_fusion,imu_irq,fusion_update,4.7,6.0
+camera_exposure_to_frame,camera_sof,v4l2_buffer_done,18.5,25.0
+fusion_to_compositor,fusion_update,frame_submitted,7.8,10.0
+compositor_to_vblank,frame_submitted,drm_vblank,11.1,16.7
+scanout_to_photon,drm_vblank,panel_visible,8.0,10.0

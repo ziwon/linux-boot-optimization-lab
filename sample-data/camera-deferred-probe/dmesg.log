@@ -1,0 +1,10 @@
+[    0.112300] calling  clk_init+0x0/0x100 @ 1
+[    0.126500] initcall clk_init+0x0/0x100 returned 0 after 14192 usecs
+[    0.128000] calling  regulator_init_complete+0x0/0x100 @ 1
+[    0.451200] initcall regulator_init_complete+0x0/0x100 returned 0 after 323115 usecs
+[    1.013000] camera_sensor 1-0036: supply avdd not found, deferring probe
+[    1.214000] csi-phy 1a00000.csi: waiting for cam-vdd regulator
+[    1.812000] camera_sensor 1-0036: deferred probe pending supplier cam-vdd
+[    2.044000] cam-vdd-regulator: registered fixed regulator
+[    2.107000] camera_sensor 1-0036: probe successful
+[    2.190000] media0: registered camera pipeline

@@ -1,0 +1,8 @@
+[0.000] power_on
+[1.900] kernel_start
+[2.420] init_started
+[3.050] first_imu_sample
+[3.700] aad_armed
+[4.080] first_ui_frame
+[4.520] launch_ui_interactive
+[6.200] first_camera_frame

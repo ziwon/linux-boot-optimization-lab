@@ -1,0 +1,5 @@
+           CPU0       CPU1
+ 42:       1280          0  GICv3  89 Edge      bmi270-imu
+ 43:         22          0  GICv3  90 Edge      tof-proximity
+ 44:          5          0  GICv3  91 Edge      audio-aad
+ 45:        240          0  GICv3  92 Edge      sensor-hub-mailbox

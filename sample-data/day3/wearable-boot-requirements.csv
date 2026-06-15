@@ -1,0 +1,7 @@
+kpi,start,stop,budget_ms,owner,required_for_launch
+kernel_ready_time,power_on,init_started,2500,kernel,true
+sensor_ready_time,power_on,first_imu_sample,3200,sensor_service,true
+audio_wake_ready_time,power_on,aad_armed,4000,audio,true
+display_ready_time,power_on,first_ui_frame,4500,display,true
+camera_ready_time,power_on,first_camera_frame,6500,camera,false
+product_ready_time,power_on,launch_ui_interactive,5000,platform,true

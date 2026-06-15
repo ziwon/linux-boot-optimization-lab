@@ -1,0 +1,6 @@
+                                 enable  prepare  protect                                duty
+   clock                          count    count    count        rate   accuracy phase  cycle
+---------------------------------------------------------------------------------------------
+ cam_cc_mclk                          1        1        0    24000000          0     0  50000
+ cam_cc_csi0                          1        1        0   200000000          0     0  50000
+ gcc_camera_ahb                       1        1        0   100000000          0     0  50000

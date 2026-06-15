@@ -1,0 +1,7 @@
+[    1.122000] bmi270 0-0068: supply vddio not ready, deferring probe
+[    1.330000] tof-proximity 0-0029: interrupt GPIO provider not ready, deferring probe
+[    1.900000] sensor-hub 580000.mailbox: firmware request pending
+[    2.240000] vddio-sensor-regulator: registered fixed regulator
+[    2.340000] gpio-sensor-expander 0-0020: registered gpiochip
+[    2.510000] bmi270 0-0068: probe successful
+[    2.620000] tof-proximity 0-0029: probe successful

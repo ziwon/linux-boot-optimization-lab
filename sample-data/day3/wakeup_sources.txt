@@ -1,0 +1,5 @@
+name                    active_count event_count wakeup_count expire_count active_since total_time max_time last_change prevent_suspend_time
+bmi270-imu              0            1280        4            0            0            10422      120      501122      0
+tof-proximity           0            22          6            0            0            982        88       501240      0
+audio-aad               0            5           5            0            0            8800       3200     501400      0
+sensor-hub-mailbox      0            240         10           0            0            3310       210      501512      0

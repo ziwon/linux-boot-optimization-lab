@@ -1,0 +1,11 @@
+/sys/bus/iio/devices/iio:device0/name: bmi270-imu
+/sys/bus/iio/devices/iio:device0/in_accel_x_raw
+/sys/bus/iio/devices/iio:device0/in_accel_y_raw
+/sys/bus/iio/devices/iio:device0/in_accel_z_raw
+/sys/bus/iio/devices/iio:device0/in_anglvel_x_raw
+/sys/bus/iio/devices/iio:device0/in_anglvel_y_raw
+/sys/bus/iio/devices/iio:device0/in_anglvel_z_raw
+/sys/bus/iio/devices/iio:device0/sampling_frequency: 200
+/sys/bus/iio/devices/iio:device0/buffer/enable: 1
+/sys/bus/iio/devices/iio:device0/buffer/length: 256
+/sys/bus/iio/devices/trigger0/name: bmi270-imu-dev0

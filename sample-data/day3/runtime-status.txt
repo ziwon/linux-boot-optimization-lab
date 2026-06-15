@@ -1,0 +1,6 @@
+/sys/devices/platform/soc/880000.i2c/iio:device0/power/runtime_status: suspended
+/sys/devices/platform/soc/880000.i2c/iio:device0/power/autosuspend_delay_ms: 200
+/sys/devices/platform/soc/890000.i2c/tof-proximity/power/runtime_status: active
+/sys/devices/platform/soc/890000.i2c/tof-proximity/power/wakeup: enabled
+/sys/devices/platform/soc/audio-aad/power/runtime_status: suspended
+/sys/devices/platform/soc/audio-aad/power/wakeup: enabled
