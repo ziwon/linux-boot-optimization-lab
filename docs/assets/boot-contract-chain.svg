@@ -1,0 +1,77 @@
+<svg width="760" height="760" viewBox="0 0 760 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="boot-contract-title boot-contract-desc">
+  <title id="boot-contract-title">Boot contract chain</title>
+  <desc id="boot-contract-desc">A vertical boot contract chain showing stage responsibilities and debugging evidence.</desc>
+  <style>
+    .box { fill: #f6f8fa; stroke: #57606a; stroke-width: 1.2; rx: 6; }
+    .evidence { fill: #fff8c5; stroke: #9a6700; stroke-width: 1.1; rx: 6; }
+    .stage { font: 600 13px sans-serif; fill: #24292f; }
+    .detail { font: 11px sans-serif; fill: #57606a; }
+    .small { font: 10px sans-serif; fill: #57606a; }
+    .arrow { stroke: #0969da; stroke-width: 2; marker-end: url(#arrowhead); }
+    .side { stroke: #9a6700; stroke-width: 1.5; stroke-dasharray: 4 4; marker-end: url(#evidenceArrow); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#0969da" />
+    </marker>
+    <marker id="evidenceArrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#9a6700" />
+    </marker>
+  </defs>
+  <rect class="box" x="80" y="25" width="280" height="58"/>
+  <text class="stage" x="220" y="49" text-anchor="middle">CPU reset vector</text>
+  <text class="detail" x="220" y="68" text-anchor="middle">First instruction after reset</text>
+  <line class="arrow" x1="220" y1="83" x2="220" y2="112"/>
+
+  <rect class="box" x="80" y="112" width="280" height="70"/>
+  <text class="stage" x="220" y="137" text-anchor="middle">Boot ROM / PBL</text>
+  <text class="detail" x="220" y="156" text-anchor="middle">Find trusted boot media</text>
+  <text class="small" x="220" y="172" text-anchor="middle">Contract: authenticated next image loaded</text>
+  <line class="side" x1="360" y1="147" x2="430" y2="147"/>
+  <rect class="evidence" x="430" y="122" width="250" height="50"/>
+  <text class="stage" x="555" y="143" text-anchor="middle">Evidence</text>
+  <text class="detail" x="555" y="160" text-anchor="middle">early UART, boot strap, ROM code</text>
+  <line class="arrow" x1="220" y1="182" x2="220" y2="212"/>
+
+  <rect class="box" x="80" y="212" width="280" height="70"/>
+  <text class="stage" x="220" y="237" text-anchor="middle">Early firmware / TF-A</text>
+  <text class="detail" x="220" y="256" text-anchor="middle">Clocks, PMIC, DRAM, security state</text>
+  <text class="small" x="220" y="272" text-anchor="middle">Contract: executable memory and CPU state ready</text>
+  <line class="arrow" x1="220" y1="282" x2="220" y2="312"/>
+
+  <rect class="box" x="80" y="312" width="280" height="76"/>
+  <text class="stage" x="220" y="337" text-anchor="middle">Bootloader</text>
+  <text class="detail" x="220" y="356" text-anchor="middle">Load kernel, initramfs, DTB</text>
+  <text class="small" x="220" y="372" text-anchor="middle">Contract: DTB address and bootargs valid</text>
+  <line class="side" x1="360" y1="350" x2="430" y2="350"/>
+  <rect class="evidence" x="430" y="325" width="250" height="50"/>
+  <text class="stage" x="555" y="346" text-anchor="middle">Evidence</text>
+  <text class="detail" x="555" y="363" text-anchor="middle">U-Boot log, env, selected DTB</text>
+  <line class="arrow" x1="220" y1="388" x2="220" y2="418"/>
+
+  <rect class="box" x="80" y="418" width="280" height="76"/>
+  <text class="stage" x="220" y="443" text-anchor="middle">Linux kernel entry</text>
+  <text class="detail" x="220" y="462" text-anchor="middle">Decompress, setup_arch(), start_kernel()</text>
+  <text class="small" x="220" y="478" text-anchor="middle">Contract: core kernel services initialized</text>
+  <line class="side" x1="360" y1="456" x2="430" y2="456"/>
+  <rect class="evidence" x="430" y="431" width="250" height="50"/>
+  <text class="stage" x="555" y="452" text-anchor="middle">Evidence</text>
+  <text class="detail" x="555" y="469" text-anchor="middle">earlycon, printk.time, initcall_debug</text>
+  <line class="arrow" x1="220" y1="494" x2="220" y2="524"/>
+
+  <rect class="box" x="80" y="524" width="280" height="76"/>
+  <text class="stage" x="220" y="549" text-anchor="middle">Initcalls and driver probe</text>
+  <text class="detail" x="220" y="568" text-anchor="middle">Register buses, match devices, request resources</text>
+  <text class="small" x="220" y="584" text-anchor="middle">Contract: required devices become available</text>
+  <line class="side" x1="360" y1="562" x2="430" y2="562"/>
+  <rect class="evidence" x="430" y="537" width="250" height="50"/>
+  <text class="stage" x="555" y="558" text-anchor="middle">Evidence</text>
+  <text class="detail" x="555" y="575" text-anchor="middle">dmesg, devices_deferred, ftrace</text>
+  <line class="arrow" x1="220" y1="600" x2="220" y2="630"/>
+
+  <rect class="box" x="80" y="630" width="280" height="76"/>
+  <text class="stage" x="220" y="655" text-anchor="middle">Rootfs and user space</text>
+  <text class="detail" x="220" y="674" text-anchor="middle">Mount rootfs, run init, start product services</text>
+  <text class="small" x="220" y="690" text-anchor="middle">Contract: product reaches usable state</text>
+  <text class="detail" x="380" y="735" text-anchor="middle">Debugging starts by finding the broken handoff, then proving it with logs or traces.</text>
+</svg>

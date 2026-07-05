@@ -1,0 +1,86 @@
+<svg width="760" height="840" viewBox="0 0 760 840" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="boot-chain-title boot-chain-desc">
+  <title id="boot-chain-title">Generic embedded Linux boot chain</title>
+  <desc id="boot-chain-desc">A vertical boot sequence from power-on to product application readiness, with ownership and observable evidence.</desc>
+  <style>
+    .stage { fill: #f6f8fa; stroke: #57606a; stroke-width: 1.2; rx: 6; }
+    .handoff { fill: #ddf4ff; stroke: #0969da; stroke-width: 1.1; rx: 6; }
+    .note { fill: #fff8c5; stroke: #9a6700; stroke-width: 1.1; rx: 6; }
+    .title { font: 600 13px sans-serif; fill: #24292f; }
+    .body { font: 11px sans-serif; fill: #57606a; }
+    .arrow { stroke: #0969da; stroke-width: 2; marker-end: url(#arrowhead); }
+    .side { stroke: #9a6700; stroke-width: 1.5; stroke-dasharray: 4 4; marker-end: url(#sidehead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#0969da" />
+    </marker>
+    <marker id="sidehead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#9a6700" />
+    </marker>
+  </defs>
+
+  <rect class="stage" x="70" y="20" width="300" height="54"/>
+  <text class="title" x="220" y="43" text-anchor="middle">Power-on / reset release</text>
+  <text class="body" x="220" y="61" text-anchor="middle">Board power, reset, straps, CPU vector</text>
+  <line class="arrow" x1="220" y1="74" x2="220" y2="98"/>
+
+  <rect class="stage" x="70" y="98" width="300" height="58"/>
+  <text class="title" x="220" y="122" text-anchor="middle">Boot ROM</text>
+  <text class="body" x="220" y="140" text-anchor="middle">Select boot media and load first image</text>
+  <line class="side" x1="370" y1="127" x2="440" y2="127"/>
+  <rect class="note" x="440" y="104" width="240" height="46"/>
+  <text class="title" x="560" y="124" text-anchor="middle">Observe</text>
+  <text class="body" x="560" y="141" text-anchor="middle">strap, ROM code, early UART</text>
+  <line class="arrow" x1="220" y1="156" x2="220" y2="180"/>
+
+  <rect class="stage" x="70" y="180" width="300" height="58"/>
+  <text class="title" x="220" y="204" text-anchor="middle">Firmware / TF-A / vendor stages</text>
+  <text class="body" x="220" y="222" text-anchor="middle">DRAM, clocks, PMIC, security state</text>
+  <line class="arrow" x1="220" y1="238" x2="220" y2="262"/>
+
+  <rect class="stage" x="70" y="262" width="300" height="58"/>
+  <text class="title" x="220" y="286" text-anchor="middle">Bootloader</text>
+  <text class="body" x="220" y="304" text-anchor="middle">Load kernel, initramfs, DTB, bootargs</text>
+  <line class="side" x1="370" y1="291" x2="440" y2="291"/>
+  <rect class="note" x="440" y="268" width="240" height="46"/>
+  <text class="title" x="560" y="288" text-anchor="middle">Observe</text>
+  <text class="body" x="560" y="305" text-anchor="middle">U-Boot log, env, DTB choice</text>
+  <line class="arrow" x1="220" y1="320" x2="220" y2="344"/>
+
+  <rect class="handoff" x="70" y="344" width="300" height="58"/>
+  <text class="title" x="220" y="368" text-anchor="middle">Linux handoff payload</text>
+  <text class="body" x="220" y="386" text-anchor="middle">Image + DTB pointer + command line</text>
+  <line class="arrow" x1="220" y1="402" x2="220" y2="426"/>
+
+  <rect class="stage" x="70" y="426" width="300" height="58"/>
+  <text class="title" x="220" y="450" text-anchor="middle">Linux kernel entry</text>
+  <text class="body" x="220" y="468" text-anchor="middle">Decompress, setup_arch(), start_kernel()</text>
+  <line class="side" x1="370" y1="455" x2="440" y2="455"/>
+  <rect class="note" x="440" y="432" width="240" height="46"/>
+  <text class="title" x="560" y="452" text-anchor="middle">Observe</text>
+  <text class="body" x="560" y="469" text-anchor="middle">earlycon, printk.time, banner</text>
+  <line class="arrow" x1="220" y1="484" x2="220" y2="508"/>
+
+  <rect class="stage" x="70" y="508" width="300" height="58"/>
+  <text class="title" x="220" y="532" text-anchor="middle">Initcalls and driver probe</text>
+  <text class="body" x="220" y="550" text-anchor="middle">Initialize subsystems and hardware</text>
+  <line class="side" x1="370" y1="537" x2="440" y2="537"/>
+  <rect class="note" x="440" y="514" width="240" height="46"/>
+  <text class="title" x="560" y="534" text-anchor="middle">Observe</text>
+  <text class="body" x="560" y="551" text-anchor="middle">initcall_debug, dmesg, ftrace</text>
+  <line class="arrow" x1="220" y1="566" x2="220" y2="590"/>
+
+  <rect class="stage" x="70" y="590" width="300" height="58"/>
+  <text class="title" x="220" y="614" text-anchor="middle">Root filesystem</text>
+  <text class="body" x="220" y="632" text-anchor="middle">Mount / from storage or initramfs</text>
+  <line class="arrow" x1="220" y1="648" x2="220" y2="672"/>
+
+  <rect class="stage" x="70" y="672" width="300" height="58"/>
+  <text class="title" x="220" y="696" text-anchor="middle">Init process</text>
+  <text class="body" x="220" y="714" text-anchor="middle">systemd, BusyBox init, Android init</text>
+  <line class="arrow" x1="220" y1="730" x2="220" y2="754"/>
+
+  <rect class="stage" x="70" y="754" width="300" height="58"/>
+  <text class="title" x="220" y="778" text-anchor="middle">Product application ready</text>
+  <text class="body" x="220" y="796" text-anchor="middle">The user-visible function is usable</text>
+</svg>
