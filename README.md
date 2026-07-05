@@ -91,6 +91,7 @@ Follow:
 4. `labs/day1/04-uboot-core-features/README.md`
 5. `labs/day1/05-kernel-boot-flow/README.md`
 6. `labs/day1/06-bringup-issues-debugging/README.md`
+7. `labs/day1/07-uart2-polling-container-lab/README.md`
 
 ### Day 2 — Debugging and optimization
 
