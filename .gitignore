@@ -1,5 +1,6 @@
 build/
 external/
+local-artifacts/qemu/
 *.log
 !sample-data/**/*.log
 *.csv

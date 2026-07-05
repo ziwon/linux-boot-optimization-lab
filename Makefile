@@ -1,5 +1,5 @@
 
-.PHONY: help analyze-initcall analyze-ftrace summarize-samples build-uart-polling-lab run-uart-polling-lab clean-uart-polling-lab docker-build docker-shell tree
+.PHONY: help analyze-initcall analyze-ftrace summarize-samples build-uart-polling-lab run-uart-polling-lab clean-uart-polling-lab qemu-build-rootfs qemu-build-kernel qemu-direct-boot docker-build docker-shell tree
 
 help:
 	@echo "Targets:"
@@ -8,6 +8,9 @@ help:
 	@echo "  make summarize-samples - run all sample analyzers"
 	@echo "  make build-uart-polling-lab - build UART2 polling terminal lab"
 	@echo "  make run-uart-polling-lab   - run UART2 polling terminal lab"
+	@echo "  make qemu-build-rootfs      - build minimal arm64 initramfs"
+	@echo "  make qemu-build-kernel      - build arm64 Linux Image for QEMU"
+	@echo "  make qemu-direct-boot       - boot Image + initramfs in QEMU"
 	@echo "  make docker-build      - build local lab image"
 	@echo "  make docker-shell      - open shell in lab image"
 	@echo "  make tree              - show repository structure"
@@ -28,6 +31,15 @@ run-uart-polling-lab: build-uart-polling-lab
 
 clean-uart-polling-lab:
 	rm -f /tmp/uart2-polling-lab
+
+qemu-build-rootfs:
+	scripts/build-qemu-arm64-initramfs.sh
+
+qemu-build-kernel:
+	scripts/build-qemu-arm64-kernel.sh
+
+qemu-direct-boot:
+	scripts/run-qemu-aarch64-direct.sh
 
 tree:
 	git ls-files --cached --others --exclude-standard | sort

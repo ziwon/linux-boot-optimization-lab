@@ -8,7 +8,8 @@ This repository does not include private vendor binaries or board-specific files
 local-artifacts/
 ├── uboot-elf/      # U-Boot ELF, map, and symbol files
 ├── kernel-dump/    # kernel memory dumps, dmesg, and boot logs
-└── ftrace-log/     # function_graph, initcall, and boot-time ftrace logs
+├── ftrace-log/     # function_graph, initcall, and boot-time ftrace logs
+└── qemu/           # generated QEMU kernel builds and initramfs images
 ```
 
 ## Recommended File Names
@@ -20,4 +21,6 @@ local-artifacts/kernel-dump/boot.log
 local-artifacts/kernel-dump/dmesg.log
 local-artifacts/ftrace-log/trace.txt
 local-artifacts/ftrace-log/initcall_debug.log
+local-artifacts/qemu/rootfs.cpio.gz
+local-artifacts/qemu/linux-build/arch/arm64/boot/Image
 ```
