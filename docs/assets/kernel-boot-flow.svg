@@ -1,0 +1,93 @@
+<svg width="760" height="960" viewBox="0 0 760 960" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="kernel-flow-title kernel-flow-desc">
+  <title id="kernel-flow-title">Linux kernel boot flow</title>
+  <desc id="kernel-flow-desc">A vertical Linux kernel boot flow from architecture entry to first user-space process, with evidence points for debugging and boot-time analysis.</desc>
+  <style>
+    .stage { fill: #f6f8fa; stroke: #57606a; stroke-width: 1.2; rx: 6; }
+    .handoff { fill: #ddf4ff; stroke: #0969da; stroke-width: 1.1; rx: 6; }
+    .evidence { fill: #fff8c5; stroke: #9a6700; stroke-width: 1.1; rx: 6; }
+    .title { font: 600 13px sans-serif; fill: #24292f; }
+    .body { font: 11px sans-serif; fill: #57606a; }
+    .small { font: 10px sans-serif; fill: #57606a; }
+    .arrow { stroke: #0969da; stroke-width: 2; marker-end: url(#arrowhead); }
+    .side { stroke: #9a6700; stroke-width: 1.5; stroke-dasharray: 4 4; marker-end: url(#sidehead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#0969da" />
+    </marker>
+    <marker id="sidehead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#9a6700" />
+    </marker>
+  </defs>
+
+  <text class="title" x="380" y="28" text-anchor="middle">Linux kernel boot flow</text>
+  <text class="body" x="380" y="48" text-anchor="middle">Kernel time starts after Linux receives the boot payload.</text>
+
+  <rect class="handoff" x="80" y="76" width="300" height="64"/>
+  <text class="title" x="230" y="101" text-anchor="middle">Bootloader payload</text>
+  <text class="body" x="230" y="119" text-anchor="middle">Image, DTB, command line, initramfs</text>
+  <line class="side" x1="380" y1="108" x2="444" y2="108"/>
+  <rect class="evidence" x="444" y="84" width="236" height="48"/>
+  <text class="title" x="562" y="104" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="121" text-anchor="middle">U-Boot log, QEMU args</text>
+  <line class="arrow" x1="230" y1="140" x2="230" y2="166"/>
+
+  <rect class="stage" x="80" y="166" width="300" height="58"/>
+  <text class="title" x="230" y="190" text-anchor="middle">Architecture entry</text>
+  <text class="body" x="230" y="208" text-anchor="middle">CPU enters architecture-specific kernel path</text>
+  <line class="arrow" x1="230" y1="224" x2="230" y2="250"/>
+
+  <rect class="stage" x="80" y="250" width="300" height="58"/>
+  <text class="title" x="230" y="274" text-anchor="middle">Decompress / relocate</text>
+  <text class="body" x="230" y="292" text-anchor="middle">prepare executable kernel image if needed</text>
+  <line class="arrow" x1="230" y1="308" x2="230" y2="334"/>
+
+  <rect class="stage" x="80" y="334" width="300" height="66"/>
+  <text class="title" x="230" y="358" text-anchor="middle">setup_arch()</text>
+  <text class="body" x="230" y="376" text-anchor="middle">parse DTB, command line, memory map</text>
+  <text class="small" x="230" y="392" text-anchor="middle">Wrong DTB or memory map breaks later stages.</text>
+  <line class="side" x1="380" y1="367" x2="444" y2="367"/>
+  <rect class="evidence" x="444" y="343" width="236" height="48"/>
+  <text class="title" x="562" y="363" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="380" text-anchor="middle">model, cmdline, reserved memory</text>
+  <line class="arrow" x1="230" y1="400" x2="230" y2="426"/>
+
+  <rect class="handoff" x="80" y="426" width="300" height="64"/>
+  <text class="title" x="230" y="451" text-anchor="middle">start_kernel()</text>
+  <text class="body" x="230" y="469" text-anchor="middle">core Linux initialization begins</text>
+  <line class="arrow" x1="230" y1="490" x2="230" y2="516"/>
+
+  <rect class="stage" x="80" y="516" width="300" height="74"/>
+  <text class="title" x="230" y="541" text-anchor="middle">Core services</text>
+  <text class="body" x="230" y="559" text-anchor="middle">memory, IRQ, timers, scheduler, RCU</text>
+  <text class="small" x="230" y="575" text-anchor="middle">Device init depends on these foundations.</text>
+  <line class="arrow" x1="230" y1="590" x2="230" y2="616"/>
+
+  <rect class="stage" x="80" y="616" width="300" height="58"/>
+  <text class="title" x="230" y="640" text-anchor="middle">rest_init()</text>
+  <text class="body" x="230" y="658" text-anchor="middle">create kernel_init and kthreadd</text>
+  <line class="arrow" x1="230" y1="674" x2="230" y2="700"/>
+
+  <rect class="handoff" x="80" y="700" width="300" height="66"/>
+  <text class="title" x="230" y="724" text-anchor="middle">Initcalls and driver probe</text>
+  <text class="body" x="230" y="742" text-anchor="middle">subsystems, buses, devices, late init</text>
+  <text class="small" x="230" y="758" text-anchor="middle">Most hardware boot delays appear here.</text>
+  <line class="side" x1="380" y1="733" x2="444" y2="733"/>
+  <rect class="evidence" x="444" y="709" width="236" height="48"/>
+  <text class="title" x="562" y="729" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="746" text-anchor="middle">initcall_debug, dmesg, ftrace</text>
+  <line class="arrow" x1="230" y1="766" x2="230" y2="792"/>
+
+  <rect class="stage" x="80" y="792" width="300" height="58"/>
+  <text class="title" x="230" y="816" text-anchor="middle">Root filesystem</text>
+  <text class="body" x="230" y="834" text-anchor="middle">mount rootfs or unpack initramfs</text>
+  <line class="arrow" x1="230" y1="850" x2="230" y2="876"/>
+
+  <rect class="handoff" x="80" y="876" width="300" height="58"/>
+  <text class="title" x="230" y="900" text-anchor="middle">First user-space process</text>
+  <text class="body" x="230" y="918" text-anchor="middle">Run /init, /sbin/init, systemd, Android init</text>
+  <line class="side" x1="380" y1="905" x2="444" y2="905"/>
+  <rect class="evidence" x="444" y="881" width="236" height="48"/>
+  <text class="title" x="562" y="901" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="918" text-anchor="middle">Run /init, shell, service logs</text>
+</svg>
