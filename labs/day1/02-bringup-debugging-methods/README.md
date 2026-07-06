@@ -11,6 +11,65 @@ Learn the tools and reasoning process used during board bring-up.
 3. Read a boot log and identify the last known-good stage.
 4. Classify failures as hardware, firmware, bootloader, kernel, device tree, driver, or rootfs.
 
+## QEMU experiment environment
+
+This lab uses QEMU to generate repeatable bring-up logs. QEMU cannot prove real
+board power, reset, clocks, or DRAM training, but it is useful for practicing
+the debugging method:
+
+```text
+observe log
+  -> find last known-good stage
+  -> classify likely owner
+  -> decide the next proof needed
+```
+
+Build and enter the repository container:
+
+```bash
+make docker-build
+make docker-shell
+```
+
+Inside the container, prepare the QEMU artifacts if they do not already exist:
+
+```bash
+make qemu-build-rootfs
+make qemu-build-kernel
+```
+
+Run the scenarios:
+
+```bash
+make qemu-bringup-good
+make qemu-bringup-missing-init
+make qemu-bringup-missing-rootfs
+```
+
+Logs are written to:
+
+```text
+local-artifacts/qemu/bringup-debugging/
+```
+
+Classify the generated logs:
+
+```bash
+make classify-bringup-logs
+```
+
+Expected scenarios:
+
+| Scenario | Purpose | Expected classification |
+|---|---|---|
+| `good` | Prove the known-good baseline reaches user space | no failure observed |
+| `missing-init` | Kernel has initramfs but requested init path is wrong | rootfs / init |
+| `missing-rootfs` | Kernel has no usable root device or initramfs | rootfs / storage |
+
+Use these logs as a controlled substitute for early board bring-up evidence.
+On a real board, replace them with UART, U-Boot, firmware, JTAG, and power
+measurement evidence.
+
 ## Useful tools
 
 - UART console

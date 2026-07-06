@@ -1,5 +1,5 @@
 
-.PHONY: help analyze-initcall analyze-ftrace summarize-samples build-uart-polling-lab run-uart-polling-lab clean-uart-polling-lab qemu-build-rootfs qemu-build-kernel qemu-direct-boot docker-build docker-shell tree
+.PHONY: help analyze-initcall analyze-ftrace summarize-samples build-uart-polling-lab run-uart-polling-lab clean-uart-polling-lab qemu-build-rootfs qemu-build-kernel qemu-direct-boot qemu-bringup-good qemu-bringup-missing-init qemu-bringup-missing-rootfs classify-bringup-logs docker-build docker-shell tree
 
 help:
 	@echo "Targets:"
@@ -11,6 +11,10 @@ help:
 	@echo "  make qemu-build-rootfs      - build minimal arm64 initramfs"
 	@echo "  make qemu-build-kernel      - build arm64 Linux Image for QEMU"
 	@echo "  make qemu-direct-boot       - boot Image + initramfs in QEMU"
+	@echo "  make qemu-bringup-good      - run good QEMU bring-up scenario"
+	@echo "  make qemu-bringup-missing-init - run missing init failure scenario"
+	@echo "  make qemu-bringup-missing-rootfs - run missing rootfs failure scenario"
+	@echo "  make classify-bringup-logs  - classify QEMU bring-up scenario logs"
 	@echo "  make docker-build      - build local lab image"
 	@echo "  make docker-shell      - open shell in lab image"
 	@echo "  make tree              - show repository structure"
@@ -40,6 +44,18 @@ qemu-build-kernel:
 
 qemu-direct-boot:
 	scripts/run-qemu-aarch64-direct.sh
+
+qemu-bringup-good:
+	scripts/run-qemu-bringup-scenario.sh good
+
+qemu-bringup-missing-init:
+	scripts/run-qemu-bringup-scenario.sh missing-init
+
+qemu-bringup-missing-rootfs:
+	scripts/run-qemu-bringup-scenario.sh missing-rootfs
+
+classify-bringup-logs:
+	scripts/classify-bringup-log.py local-artifacts/qemu/bringup-debugging/*.log
 
 tree:
 	git ls-files --cached --others --exclude-standard | sort
