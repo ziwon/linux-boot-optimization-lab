@@ -1,0 +1,89 @@
+<svg width="760" height="900" viewBox="0 0 760 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="bsp-dep-title bsp-dep-desc">
+  <title id="bsp-dep-title">BSP bring-up dependency graph</title>
+  <desc id="bsp-dep-desc">A vertical BSP bring-up dependency graph from board facts to product-visible function, with evidence points.</desc>
+  <style>
+    .box { fill: #f6f8fa; stroke: #57606a; stroke-width: 1.2; rx: 6; }
+    .handoff { fill: #ddf4ff; stroke: #0969da; stroke-width: 1.1; rx: 6; }
+    .evidence { fill: #fff8c5; stroke: #9a6700; stroke-width: 1.1; rx: 6; }
+    .title { font: 600 13px sans-serif; fill: #24292f; }
+    .body { font: 11px sans-serif; fill: #57606a; }
+    .small { font: 10px sans-serif; fill: #57606a; }
+    .arrow { stroke: #0969da; stroke-width: 2; marker-end: url(#arrowhead); }
+    .side { stroke: #9a6700; stroke-width: 1.5; stroke-dasharray: 4 4; marker-end: url(#sidehead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#0969da" />
+    </marker>
+    <marker id="sidehead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#9a6700" />
+    </marker>
+  </defs>
+
+  <text class="title" x="380" y="28" text-anchor="middle">BSP bring-up dependency graph</text>
+  <text class="body" x="380" y="48" text-anchor="middle">Turn board facts into a proven product function, one contract at a time.</text>
+
+  <rect class="box" x="80" y="76" width="300" height="62"/>
+  <text class="title" x="230" y="101" text-anchor="middle">Board schematic and BOM</text>
+  <text class="body" x="230" y="120" text-anchor="middle">real wiring, supplies, clocks, straps</text>
+  <line class="side" x1="380" y1="107" x2="444" y2="107"/>
+  <rect class="evidence" x="444" y="83" width="236" height="48"/>
+  <text class="title" x="562" y="103" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="120" text-anchor="middle">schematic, scope, PMIC status</text>
+  <line class="arrow" x1="230" y1="138" x2="230" y2="166"/>
+
+  <rect class="handoff" x="80" y="166" width="300" height="62"/>
+  <text class="title" x="230" y="191" text-anchor="middle">Hardware description</text>
+  <text class="body" x="230" y="210" text-anchor="middle">DTS nodes, pinctrl, regulators, clocks</text>
+  <line class="arrow" x1="230" y1="228" x2="230" y2="256"/>
+
+  <rect class="box" x="80" y="256" width="300" height="62"/>
+  <text class="title" x="230" y="281" text-anchor="middle">Boot artifacts</text>
+  <text class="body" x="230" y="300" text-anchor="middle">Image, DTB, initramfs, bootargs</text>
+  <line class="side" x1="380" y1="287" x2="444" y2="287"/>
+  <rect class="evidence" x="444" y="263" width="236" height="48"/>
+  <text class="title" x="562" y="283" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="300" text-anchor="middle">U-Boot log, fdt print, printenv</text>
+  <line class="arrow" x1="230" y1="318" x2="230" y2="346"/>
+
+  <rect class="handoff" x="80" y="346" width="300" height="62"/>
+  <text class="title" x="230" y="371" text-anchor="middle">Kernel object creation</text>
+  <text class="body" x="230" y="390" text-anchor="middle">platform, I2C, SPI, AMBA devices</text>
+  <line class="arrow" x1="230" y1="408" x2="230" y2="436"/>
+
+  <rect class="box" x="80" y="436" width="300" height="72"/>
+  <text class="title" x="230" y="462" text-anchor="middle">Supplier readiness</text>
+  <text class="body" x="230" y="481" text-anchor="middle">clocks, regulators, GPIOs, resets, PHYs</text>
+  <text class="small" x="230" y="497" text-anchor="middle">Missing suppliers usually become deferred probe.</text>
+  <line class="side" x1="380" y1="472" x2="444" y2="472"/>
+  <rect class="evidence" x="444" y="448" width="236" height="48"/>
+  <text class="title" x="562" y="468" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="485" text-anchor="middle">clk, regulator, GPIO summaries</text>
+  <line class="arrow" x1="230" y1="508" x2="230" y2="536"/>
+
+  <rect class="handoff" x="80" y="536" width="300" height="62"/>
+  <text class="title" x="230" y="561" text-anchor="middle">Driver probe</text>
+  <text class="body" x="230" y="580" text-anchor="middle">match compatible and request resources</text>
+  <line class="side" x1="380" y1="567" x2="444" y2="567"/>
+  <rect class="evidence" x="444" y="543" width="236" height="48"/>
+  <text class="title" x="562" y="563" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="580" text-anchor="middle">dmesg, initcall_debug, ftrace</text>
+  <line class="arrow" x1="230" y1="598" x2="230" y2="626"/>
+
+  <rect class="box" x="80" y="626" width="300" height="62"/>
+  <text class="title" x="230" y="651" text-anchor="middle">User-space interface</text>
+  <text class="body" x="230" y="670" text-anchor="middle">dev node, sysfs, netdev, media graph</text>
+  <line class="arrow" x1="230" y1="688" x2="230" y2="716"/>
+
+  <rect class="handoff" x="80" y="716" width="300" height="62"/>
+  <text class="title" x="230" y="741" text-anchor="middle">Product-visible function</text>
+  <text class="body" x="230" y="760" text-anchor="middle">display, camera, audio, sensor, network</text>
+  <line class="side" x1="380" y1="747" x2="444" y2="747"/>
+  <rect class="evidence" x="444" y="723" width="236" height="48"/>
+  <text class="title" x="562" y="743" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="760" text-anchor="middle">test result, service log, ready time</text>
+
+  <rect class="evidence" x="90" y="820" width="580" height="54"/>
+  <text class="title" x="380" y="842" text-anchor="middle">Bring-up rule</text>
+  <text class="body" x="380" y="860" text-anchor="middle">Do not debug five unknowns at once. Prove the next missing contract.</text>
+</svg>
