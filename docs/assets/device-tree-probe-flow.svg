@@ -1,0 +1,92 @@
+<svg width="760" height="920" viewBox="0 0 760 920" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="dt-probe-title dt-probe-desc">
+  <title id="dt-probe-title">Device Tree to driver probe flow</title>
+  <desc id="dt-probe-desc">A vertical Device Tree flow from schematic facts to user-space interfaces, showing the evidence to collect at each stage.</desc>
+  <style>
+    .box { fill: #f6f8fa; stroke: #57606a; stroke-width: 1.2; rx: 6; }
+    .handoff { fill: #ddf4ff; stroke: #0969da; stroke-width: 1.1; rx: 6; }
+    .evidence { fill: #fff8c5; stroke: #9a6700; stroke-width: 1.1; rx: 6; }
+    .title { font: 600 13px sans-serif; fill: #24292f; }
+    .body { font: 11px sans-serif; fill: #57606a; }
+    .small { font: 10px sans-serif; fill: #57606a; }
+    .arrow { stroke: #0969da; stroke-width: 2; marker-end: url(#arrowhead); }
+    .side { stroke: #9a6700; stroke-width: 1.5; stroke-dasharray: 4 4; marker-end: url(#sidehead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#0969da" />
+    </marker>
+    <marker id="sidehead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#9a6700" />
+    </marker>
+  </defs>
+
+  <text class="title" x="380" y="28" text-anchor="middle">Device Tree to driver probe flow</text>
+  <text class="body" x="380" y="48" text-anchor="middle">A DTS node is a contract that creates kernel objects and resource lookups.</text>
+
+  <rect class="box" x="80" y="76" width="300" height="58"/>
+  <text class="title" x="230" y="100" text-anchor="middle">Schematic fact</text>
+  <text class="body" x="230" y="118" text-anchor="middle">bus, address, IRQ, power, reset, pins</text>
+  <line class="arrow" x1="230" y1="134" x2="230" y2="160"/>
+
+  <rect class="handoff" x="80" y="160" width="300" height="66"/>
+  <text class="title" x="230" y="184" text-anchor="middle">DTS node</text>
+  <text class="body" x="230" y="202" text-anchor="middle">compatible, reg, interrupts, supplies</text>
+  <text class="small" x="230" y="218" text-anchor="middle">Binding docs define the expected contract.</text>
+  <line class="side" x1="380" y1="193" x2="444" y2="193"/>
+  <rect class="evidence" x="444" y="169" width="236" height="48"/>
+  <text class="title" x="562" y="189" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="206" text-anchor="middle">DTS review, dt-bindings</text>
+  <line class="arrow" x1="230" y1="226" x2="230" y2="252"/>
+
+  <rect class="box" x="80" y="252" width="300" height="58"/>
+  <text class="title" x="230" y="276" text-anchor="middle">Compiled DTB</text>
+  <text class="body" x="230" y="294" text-anchor="middle">flattened blob produced by dtc</text>
+  <line class="arrow" x1="230" y1="310" x2="230" y2="336"/>
+
+  <rect class="handoff" x="80" y="336" width="300" height="58"/>
+  <text class="title" x="230" y="360" text-anchor="middle">Bootloader handoff</text>
+  <text class="body" x="230" y="378" text-anchor="middle">selects, loads, and may fix up DTB</text>
+  <line class="side" x1="380" y1="365" x2="444" y2="365"/>
+  <rect class="evidence" x="444" y="341" width="236" height="48"/>
+  <text class="title" x="562" y="361" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="378" text-anchor="middle">fdt addr, fdt print /chosen</text>
+  <line class="arrow" x1="230" y1="394" x2="230" y2="420"/>
+
+  <rect class="box" x="80" y="420" width="300" height="58"/>
+  <text class="title" x="230" y="444" text-anchor="middle">Kernel unflattens tree</text>
+  <text class="body" x="230" y="462" text-anchor="middle">DT nodes become kernel data structures</text>
+  <line class="arrow" x1="230" y1="478" x2="230" y2="504"/>
+
+  <rect class="handoff" x="80" y="504" width="300" height="66"/>
+  <text class="title" x="230" y="528" text-anchor="middle">Device object created</text>
+  <text class="body" x="230" y="546" text-anchor="middle">platform_device, i2c_client, spi_device</text>
+  <text class="small" x="230" y="562" text-anchor="middle">Parent bus must probe before child devices.</text>
+  <line class="side" x1="380" y1="537" x2="444" y2="537"/>
+  <rect class="evidence" x="444" y="513" width="236" height="48"/>
+  <text class="title" x="562" y="533" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="550" text-anchor="middle">/proc/device-tree, dmesg</text>
+  <line class="arrow" x1="230" y1="570" x2="230" y2="596"/>
+
+  <rect class="box" x="80" y="596" width="300" height="58"/>
+  <text class="title" x="230" y="620" text-anchor="middle">Driver match</text>
+  <text class="body" x="230" y="638" text-anchor="middle">compatible string or bus ID matches driver</text>
+  <line class="arrow" x1="230" y1="654" x2="230" y2="680"/>
+
+  <rect class="handoff" x="80" y="680" width="300" height="74"/>
+  <text class="title" x="230" y="705" text-anchor="middle">probe() requests resources</text>
+  <text class="body" x="230" y="723" text-anchor="middle">MMIO, IRQ, clocks, regulators, GPIOs</text>
+  <text class="small" x="230" y="739" text-anchor="middle">Missing suppliers can return -EPROBE_DEFER.</text>
+  <line class="side" x1="380" y1="717" x2="444" y2="717"/>
+  <rect class="evidence" x="444" y="693" width="236" height="48"/>
+  <text class="title" x="562" y="713" text-anchor="middle">Evidence</text>
+  <text class="body" x="562" y="730" text-anchor="middle">devices_deferred, clk, regulators</text>
+  <line class="arrow" x1="230" y1="754" x2="230" y2="780"/>
+
+  <rect class="box" x="80" y="780" width="300" height="58"/>
+  <text class="title" x="230" y="804" text-anchor="middle">User-space interface</text>
+  <text class="body" x="230" y="822" text-anchor="middle">dev node, sysfs, netdev, media graph</text>
+
+  <rect class="evidence" x="90" y="860" width="580" height="42"/>
+  <text class="title" x="380" y="877" text-anchor="middle">Debugging rule</text>
+  <text class="body" x="380" y="894" text-anchor="middle">Find the first missing link: DTB, device object, match, resource, or interface.</text>
+</svg>
